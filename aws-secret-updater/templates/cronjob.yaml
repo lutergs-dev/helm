@@ -36,5 +36,7 @@ spec:
                   value: {{ .Values.kubernetes.targetNamespaces | join "," }}
                 - name: REPOSITORY_URL
                   value: {{ printf "%s.dkr.ecr.%s.amazonaws.com" .Values.aws.userId .Values.aws.region }}
+                - name: SECRET_NAME
+                  value: {{ .Values.kubernetes.secretName }}
               resources:
                 {{- toYaml .Values.resources | nindent 16 }}
