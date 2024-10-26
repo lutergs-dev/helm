@@ -32,7 +32,7 @@ spec:
                   value: {{ .Values.awsCredentials.secretKey }}
                 - name: REGION
                   value: {{ .Values.awsRegion }}
-                - name: NAMESPACE
+                - name: NAMESPACES
                   value: {{ .Values.kubernetes.targetNamespaces | join "," }}
               resources:
                 {{- toYaml .Values.resources | nindent 16 }}
