@@ -1,0 +1,41 @@
+# Default values for aws-secret-updater.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# Name of the job
+jobName: aws-secret-update-job
+
+# Service account configuration
+serviceAccount:
+  annotations: {}  # Annotations to add to the service account
+  name: "aws-secret-updater-serviceaccount"  # The name of the service account to use. If not set and create is true, a name is generated using the fullname template
+
+# Cron schedule for the job
+cronSchedule: "0 */2 * * *"
+
+# AWS configuration
+awsRegion: "us-west-2"  # ECR Region
+awsCredentials:
+  accessKey: "SET_ACCESS_KEY"
+  secretKey: "SET_SECRET_KEY"
+
+# Container image configuration
+# More information: https://kubernetes.io/docs/concepts/containers/images/
+image:
+  repository: koo04034/aws-ecr-secret-updater
+  pullPolicy: IfNotPresent  # This sets the pull policy for images
+  tag: "latest"  # Overrides the image tag whose default is the chart appVersion
+
+# Pod annotations
+# More information: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
+podAnnotations: {}
+
+# Container security context
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
