@@ -14,10 +14,12 @@ serviceAccount:
 cronSchedule: "0 */2 * * *"
 
 # AWS configuration
-awsRegion: "us-west-2"  # ECR Region
-awsCredentials:
-  accessKey: "SET_ACCESS_KEY"
-  secretKey: "SET_SECRET_KEY"
+aws:
+  region: "us-west-2"    # ECR REGION
+  credentials:
+    accessKey: "SET_ACCESS_KEY"
+    secretKey: "SET_SECRET_KEY"
+  userId: 123456789101
 
 kubernetes:
   targetNamespaces:

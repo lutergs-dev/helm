@@ -27,12 +27,14 @@ spec:
               imagePullPolicy: {{ .Values.image.pullPolicy }}
               env:
                 - name: ACCESS_KEY
-                  value: {{ .Values.awsCredentials.accessKey }}
+                  value: {{ .Values.aws.credentials.accessKey }}
                 - name: SECRET_KEY
-                  value: {{ .Values.awsCredentials.secretKey }}
+                  value: {{ .Values.aws.credentials.secretKey }}
                 - name: REGION
-                  value: {{ .Values.awsRegion }}
+                  value: {{ .Values.aws.region }}
                 - name: NAMESPACES
                   value: {{ .Values.kubernetes.targetNamespaces | join "," }}
+                - name: REPOSITORY_URL
+                  value: {{ printf "%s.dkr.ecr.%s.amazonaws.com" .Values.aws.userId .Values.aws.region }}
               resources:
                 {{- toYaml .Values.resources | nindent 16 }}
