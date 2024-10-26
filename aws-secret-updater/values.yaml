@@ -19,6 +19,10 @@ awsCredentials:
   accessKey: "SET_ACCESS_KEY"
   secretKey: "SET_SECRET_KEY"
 
+kubernetes:
+  targetNamespaces:
+    - default
+
 # Container image configuration
 # More information: https://kubernetes.io/docs/concepts/containers/images/
 image:
