@@ -26,11 +26,11 @@ spec:
               image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
               imagePullPolicy: {{ .Values.image.pullPolicy }}
               env:
-                - name: AWS_ACCESS_KEY_ID
+                - name: ACCESS_KEY
                   value: {{ .Values.awsCredentials.accessKey }}
-                - name: AWS_SECRET_ACCESS_KEY
+                - name: SECRET_KEY
                   value: {{ .Values.awsCredentials.secretKey }}
-                - name: AWS_REGION
+                - name: REGION
                   value: {{ .Values.awsRegion }}
               resources:
                 {{- toYaml .Values.resources | nindent 16 }}
