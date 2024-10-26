@@ -27,15 +27,9 @@ spec:
               imagePullPolicy: {{ .Values.image.pullPolicy }}
               env:
                 - name: AWS_ACCESS_KEY_ID
-                  valueFrom:
-                    secretKeyRef:
-                      name: {{ .Values.awsCredentials.secretName }}
-                      key: aws-access-key-id
+                  value: {{ .Values.awsCredentials.accessKey }}
                 - name: AWS_SECRET_ACCESS_KEY
-                  valueFrom:
-                    secretKeyRef:
-                      name: {{ .Values.awsCredentials.secretName }}
-                      key: aws-secret-access-key
+                  value: {{ .Values.awsCredentials.secretKey }}
                 - name: AWS_REGION
                   value: {{ .Values.awsRegion }}
               resources:
