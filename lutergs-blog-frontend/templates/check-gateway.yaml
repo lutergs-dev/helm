@@ -1,0 +1,25 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: gateway-api-check
+  annotations:
+    "helm.sh/hook": "pre-install,pre-upgrade"
+spec:
+  template:
+    spec:
+      containers:
+        - name: check-gateway-api
+          image: bitnami/kubectl:latest
+          command:
+            - /bin/sh
+            - "-c"
+            - |
+              if ! kubectl get crd gateways.gateway.networking.k8s.io > /dev/null 2>&1; then
+                echo "Gateway API is not enabled. Please install Gateway API first."
+                exit 1
+              fi
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+      restartPolicy: Never
