@@ -30,7 +30,7 @@ kubernetes:
 # Container image configuration
 # More information: https://kubernetes.io/docs/concepts/containers/images/
 image:
-  repository: koo04034/aws-ecr-secret-updater
+  repository: koo04034/aws-ecr-secret-updater-image
   pullPolicy: IfNotPresent  # This sets the pull policy for images
   tag: "0.2.0"  # Overrides the image tag whose default is the chart appVersion
 

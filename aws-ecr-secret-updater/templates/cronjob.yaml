@@ -27,7 +27,7 @@ spec:
               imagePullPolicy: {{ .Values.image.pullPolicy }}
               envFrom:
                 - secretRef:
-                    name: {{ include "aws-ecr-secret-updater.name" }}-secret
+                    name: {{ include "aws-ecr-secret-updater.name" . }}-secret
               env:
                 - name: KUBECTL_CONFIG
                   value: {{ .Values.kubernetes.kubectlExtraArgs }}
