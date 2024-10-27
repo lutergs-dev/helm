@@ -25,18 +25,11 @@ spec:
                 {{- toYaml .Values.securityContext | nindent 16 }}
               image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
               imagePullPolicy: {{ .Values.image.pullPolicy }}
+              envFrom:
+                - secretRef:
+                    name: {{ include "aws-secret-updater.name" }}-secret
               env:
-                - name: ACCESS_KEY
-                  value: {{ .Values.aws.credentials.accessKey }}
-                - name: SECRET_KEY
-                  value: {{ .Values.aws.credentials.secretKey }}
-                - name: REGION
-                  value: {{ .Values.aws.region }}
-                - name: NAMESPACES
-                  value: {{ .Values.kubernetes.targetNamespaces | join "," }}
-                - name: REPOSITORY_URL
-                  value: {{ printf "%s.dkr.ecr.%s.amazonaws.com" .Values.aws.userId .Values.aws.region }}
-                - name: SECRET_NAME
-                  value: {{ .Values.kubernetes.secretName }}
+                - name: KUBECTL_CONFIG
+                  value: {{ .Values.kubernetes.kubectlExtraArgs }}
               resources:
                 {{- toYaml .Values.resources | nindent 16 }}
