@@ -32,7 +32,7 @@ kubernetes:
 image:
   repository: koo04034/aws-ecr-secret-updater-image
   pullPolicy: IfNotPresent  # This sets the pull policy for images
-  tag: "0.2.0"  # Overrides the image tag whose default is the chart appVersion
+  tag: "0.2.1"  # Overrides the image tag whose default is the chart appVersion
 
 # Pod annotations
 # More information: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
