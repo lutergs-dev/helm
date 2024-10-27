@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  aws-ecr-secret-updater:
+  - apiVersion: v2
+    appVersion: 0.0.1
+    created: "2024-10-27T11:16:15.092952+09:00"
+    description: Kubernetes ECR access secret updater
+    digest: 3c9d7d146eb2005988bc6d8790aa1cf35b4541e6c6940ade2741fae96075f21f
+    name: aws-ecr-secret-updater
+    type: application
+    urls:
+    - https://lutergs-dev.github.io/helm/aws-ecr-secret-updater-0.1.0.tgz
+    version: 0.1.0
+generated: "2024-10-27T11:16:15.092313+09:00"
