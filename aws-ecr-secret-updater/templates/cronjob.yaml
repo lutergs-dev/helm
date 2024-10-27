@@ -1,9 +1,9 @@
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: {{ include "aws-secret-updater.fullname" . }}
+  name: {{ include "aws-ecr-secret-updater.fullname" . }}
   labels:
-    {{- include "aws-secret-updater.labels" . | nindent 4 }}
+    {{- include "aws-ecr-secret-updater.labels" . | nindent 4 }}
 spec:
   schedule: {{ .Values.cronSchedule | quote }}
   jobTemplate:
@@ -15,9 +15,9 @@ spec:
             {{- toYaml . | nindent 12 }}
           {{- end }}
           labels:
-            {{- include "aws-secret-updater.selectorLabels" . | nindent 12 }}
+            {{- include "aws-ecr-secret-updater.selectorLabels" . | nindent 12 }}
         spec:
-          serviceAccountName: {{ include "aws-secret-updater.serviceAccountName" . }}
+          serviceAccountName: {{ include "aws-ecr-secret-updater.serviceAccountName" . }}
           restartPolicy: OnFailure
           containers:
             - name: {{ .Chart.Name }}
@@ -27,7 +27,7 @@ spec:
               imagePullPolicy: {{ .Values.image.pullPolicy }}
               envFrom:
                 - secretRef:
-                    name: {{ include "aws-secret-updater.name" }}-secret
+                    name: {{ include "aws-ecr-secret-updater.name" }}-secret
               env:
                 - name: KUBECTL_CONFIG
                   value: {{ .Values.kubernetes.kubectlExtraArgs }}
